@@ -9,7 +9,7 @@ public class Compilr {
 	
 	public Compilr() { 
 	}
-		public ConcurrentSkipListSet compile() throws IOException{
+	public ConcurrentSkipListSet compile() throws IOException{
 			
 			ConcurrentSkipListSet skippy = new ConcurrentSkipListSet();
 			
