@@ -63,8 +63,8 @@ public class FrameMane extends JFrame {
 		
 		JSlider nSlider = new JSlider();
 		nSlider.setMajorTickSpacing(1);
-		nSlider.setMinimum(2);
-		nSlider.setMaximum(4);
+		nSlider.setMinimum(3);
+		nSlider.setMaximum(5);
 		nSlider.setSnapToTicks(true);
 		nSlider.setPaintLabels(true);
 		panelN.add(nSlider);
@@ -103,7 +103,7 @@ public class FrameMane extends JFrame {
 		mSlider.setSnapToTicks(true);
 		mSlider.setPaintLabels(true);
 		mSlider.setPaintTicks(true);
-		mSlider.setMinimum(2);
+		mSlider.setMinimum(3);
 		mSlider.setMaximum(8);
 		mSlider.setMajorTickSpacing(1);
 		panelM.add(mSlider);
