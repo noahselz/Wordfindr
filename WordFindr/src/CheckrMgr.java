@@ -78,8 +78,7 @@ public class CheckrMgr {
 //			   System.out.println("false");
 //		   }
 //	   }
-//	   
-//	   
+   
 	   FrameMane frame = new FrameMane(boop);
     
    }
