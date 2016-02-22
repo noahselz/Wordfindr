@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 public class CheckrMgr {
    private static boolean needCompile = false;
-   public ConcurrentSkipListSet skippy;
+   public static ConcurrentSkipListSet skippy;
    
    public CheckrMgr() throws IOException {
 	   Scanner scn = new Scanner(System.in);
@@ -64,19 +64,21 @@ public class CheckrMgr {
     * Launch the application.
     */
    public static void main(String[] args)  throws IOException{
-	  
-	   //old command line way
-//	   System.out.println("Type a word!");
-//	   while(true){
-//		   if(skippy.contains(scn.nextLine().toLowerCase())){
-//			   System.out.println("true");
-//		   }
-//		   else{
-//			   System.out.println("false");
-//		   }
-//	   }
-	   
 	   CheckrMgr boop = new CheckrMgr();
+	   
+	   Scanner scn = new Scanner(System.in);
+	   //old command line way
+	   System.out.println("Type a word!");
+	   while(true){
+		   if(skippy.contains(scn.nextLine().toLowerCase())){
+			   System.out.println("true");
+		   }
+		   else{
+			   System.out.println("false");
+		   }
+	   }
+	   
+	   //
       // CheckrFrame frame = new CheckrFrame(boop);
     
    }
