@@ -30,7 +30,7 @@ public class FrameMane extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrameMane frame = new FrameMane();
+					FrameMane frame = new FrameMane(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class FrameMane extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrameMane() {
+	public FrameMane(CheckrMgr chkmgr) {
 		setMinimumSize(new Dimension(300, 250));
 		setTitle("Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
