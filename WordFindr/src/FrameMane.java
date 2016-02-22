@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrameMane extends JFrame {
 
@@ -30,7 +32,7 @@ public class FrameMane extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrameMane frame = new FrameMane(null);
+					FrameMane frame = new FrameMane(new CheckrMgr());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -117,8 +119,17 @@ public class FrameMane extends JFrame {
 		panelGo.setLayout(new BoxLayout(panelGo, BoxLayout.X_AXIS));
 		
 		JButton btnGo = new JButton("Go");
+		btnGo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				collect(txtNxN.getText(), nSlider.getValue(), mSlider.getValue());
+			}
+		});
 		panelGo.add(btnGo);
 		
+	}
+	
+	public void collect(String string, int size, int length){
+		//CheckrMgr.find()
 	}
 
 }
