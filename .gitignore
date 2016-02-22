@@ -2,7 +2,9 @@
 *.prefs
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
+.DS_store
+.classpath
+.project
 # Package Files #
 *.jar
 *.war
