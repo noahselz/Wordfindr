@@ -28,7 +28,7 @@ public class findWords {
 		// recurse is run for every root coordinate pair in the maze
 		for(int a = 0; a < n; a++){
 			for(int b = 0; b < n; b++){
-				dict.addAll(recurse(m, r, c, new boolean[m*n][m*n])); // initialized to oversize to prevent error
+				dict.addAll(recurse(m, a, b, new boolean[m*n][m*n])); // initialized to oversize to prevent error
 				 // primitive boolean arrays are automatically initialized to false
 			}
 		}
@@ -37,7 +37,8 @@ public class findWords {
 	public ArrayList<String> recurse(int m, int r, int c, boolean[][] old){
 		ArrayList<String> words = new ArrayList<String>();
 		
-		if(m <= 0 || r > maze.length || c > maze.length || c < 0 || r < 0)
+		//case to invalidate current stack - invalid moves, or no more moves
+		if(m <= 0 || r >= maze.length || c >= maze.length || c < 0 || r < 0 || old[r][c])
 			return new ArrayList<String>();
 		
 		// Gets handle on current letter, adds to used coords
@@ -64,6 +65,7 @@ public class findWords {
 		return words;
 	}
 	
+	//takes all found word combinations and outputs the real words
 	public ArrayList<String> realWords(){
 		ArrayList<String> output = new ArrayList<String>();
 		for(int a = 0; a < dict.size(); a++){
@@ -74,6 +76,7 @@ public class findWords {
 		return output;
 	}
 	
+	// creates copy of boolean array so we don't run into stacks editing the same array
 	public boolean[][] copyOf(boolean[][] old){
 		boolean[][] newbool = new boolean[old.length][];
 		for(int a = 0; a < newbool.length; a++){
@@ -88,7 +91,7 @@ public class findWords {
 		
 		String[] test = "nhcaeefse".split("");
 	
-		findWords find = new findWords(boop, test, 3, 3);
+		findWords find = new findWords(boop, test, 3, 6);
 		System.out.println(find.realWords());
 	}
 

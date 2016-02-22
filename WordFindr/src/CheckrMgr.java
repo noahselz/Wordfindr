@@ -66,19 +66,19 @@ public class CheckrMgr {
    public static void main(String[] args)  throws IOException{
 	   CheckrMgr boop = new CheckrMgr();
 	   
-//	   Scanner scn = new Scanner(System.in);
-//	   //old command line way
-//	   System.out.println("Type a word!");
-//	   while(true){
-//		   if(skippy.contains(scn.nextLine().toLowerCase())){
-//			   System.out.println("true");
-//		   }
-//		   else{
-//			   System.out.println("false");
-//		   }
-//	   }
+	   Scanner scn = new Scanner(System.in);
+	   //old command line way
+	   System.out.println("Type a word!");
+	   while(true){
+		   if(skippy.contains(scn.nextLine().toLowerCase())){
+			   System.out.println("true");
+		   }
+		   else{
+			   System.out.println("false");
+		   }
+	   }
    
-	   FrameMane frame = new FrameMane(boop);
+	   //FrameMane frame = new FrameMane(boop);
     
    }
    
