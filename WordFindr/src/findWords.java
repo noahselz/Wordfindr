@@ -1,14 +1,23 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Dictionary;
 
 public class findWords {
-	public ArrayList<String> words = new ArrayList<String>();
-	public findWords(String[] arry, int n, int m){
+	public ArrayList<String> dict = new ArrayList<String>();
+	private String[][] maze;
+	private CheckrMgr checkr;
+	
+	// Creates maze using inputs, and runs recursive function to 
+	public findWords(CheckrMgr checkr, String[] arry, int n, int m){
+		this.checkr = checkr;
 		int r = 0;
 		int c = 0;
 		ArrayList<int[]> old;
 		int count = 0;
-		String[][] maze = new String[n][n];
+		maze = new String[n][n];
+		
+		// creates the maze using the given string and n
 		for(int a = 0; a < n; a++){
 			for(int b = 0; b < n; b++){
 				maze[a][b] = arry[count];
@@ -16,34 +25,71 @@ public class findWords {
 						count++;
 			}
 		}
-		//return recurse(maze, m, r, c, old);
-//		for(int a = 0; a < n; a++){
-//			for(int b = 0; b < n; b++){
-//				
-//			}
-//		}
-		
+		// recurse is run for every root coordinate pair in the maze
+		for(int a = 0; a < n; a++){
+			for(int b = 0; b < n; b++){
+				dict.addAll(recurse(m, r, c, new boolean[m*n][m*n])); // initialized to oversize to prevent error
+				 // primitive boolean arrays are automatically initialized to false
+			}
+		}
 	}
-	
-	public ArrayList<String> recurse(String[][] puzzle, int m, int r, int c, ArrayList<int[]> old){
-		if(m <= 0 || r > puzzle.length || c > puzzle.length || c < 0 || r < 0)
-			return new ArrayList<String>();
-		String letter = puzzle[r][c];
-		int[] temp = {r,c};
-		old.add(temp);
+	// Finds all word paths from given coords in maze
+	public ArrayList<String> recurse(int m, int r, int c, boolean[][] old){
+		ArrayList<String> words = new ArrayList<String>();
 		
+		if(m <= 0 || r > maze.length || c > maze.length || c < 0 || r < 0)
+			return new ArrayList<String>();
+		
+		// Gets handle on current letter, adds to used coords
+		String letter = maze[r][c];
+		old[r][c] = true;
+		
+		// Base case for recursion
 		if(m == 1){
-			
+			words.add(letter);
+			return words;
 		}
 		
-		return new ArrayList<String>();
+		// calls recurse for all 8 possible directions
+		for(int a = r-1; a <= r+1; a++) {
+			for(int b = c-1; b <= c+1; b++) {
+				ArrayList<String> subwords = recurse(m-1, a, b, copyOf(old)); // gets all recursively generated words
+				
+				for(String s : subwords) { // for each in subwords, add the current letter
+					words.add(letter + s);
+				}
+			}
+		}
+		
+		return words;
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	
+	public ArrayList<String> realWords(){
+		ArrayList<String> output = new ArrayList<String>();
+		for(int a = 0; a < dict.size(); a++){
+			if(checkr.check(dict.get(a)) && !output.contains(dict.get(a))){
+				output.add(dict.get(a));
+			}
+		}
+		return output;
+	}
+	
+	public boolean[][] copyOf(boolean[][] old){
+		boolean[][] newbool = new boolean[old.length][];
+		for(int a = 0; a < newbool.length; a++){
+			newbool[a] = Arrays.copyOf(old[a], old[a].length);
+		}
+		return newbool;
+	}
+	
+	// Main for testing
+	public static void main(String[] args) throws IOException {
+		CheckrMgr boop = new CheckrMgr();
+		
 		String[] test = "nhcaeefse".split("");
-		//String[] test = {"n","h","c","a", "e", "e", };
-		findWords find = new findWords(test,3,3);
+	
+		findWords find = new findWords(boop, test, 3, 3);
+		System.out.println(find.realWords());
 	}
 
 }

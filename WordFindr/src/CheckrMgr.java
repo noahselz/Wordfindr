@@ -65,7 +65,6 @@ public class CheckrMgr {
     */
    public static void main(String[] args)  throws IOException{
 	   CheckrMgr boop = new CheckrMgr();
-	   findWords wordFine = new findWords(args, 0, 0);
 	   
 //	   Scanner scn = new Scanner(System.in);
 //	   //old command line way
