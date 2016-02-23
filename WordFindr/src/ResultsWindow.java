@@ -22,6 +22,7 @@ public class ResultsWindow extends JDialog {
 		this.setSize(255, 350);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
+		// Closes on OK
 		JButton btnOk = new JButton("Ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

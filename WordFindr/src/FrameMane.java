@@ -118,17 +118,17 @@ public class FrameMane extends JFrame {
 		panelGo.add(btnGo);
 		
 	}
-	
+	 // collects user input and runs the puzzle, and returns the results
 	public void collect(String string, int size, int length){
-		if(string.length() != size*size){
+		if(string.length() != size*size){ // if string size is wrong, let the user know
 			String[] res = new String[1];
 			res[0] = "String is wrong size, try again";
 			ResultsWindow popup = new ResultsWindow(res);
 			popup.setVisible(true);
 			return;
 		}
+		//runs user input through findWords and returns the result into ResultsWindow
 		findWords find = new findWords(chkmgr,txtNxN.getText().split(""), nSlider.getValue(), mSlider.getValue());
-		//System.out.println(find.realWords());
 		String[] res = new String[100];
 		ResultsWindow popup = new ResultsWindow(find.realWords().toArray(res));
 		popup.setVisible(true);
