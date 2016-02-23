@@ -29,21 +29,6 @@ public class FrameMane extends JFrame {
 	private JButton btnGo;
 	private CheckrMgr chkmgr;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameMane frame = new FrameMane(new CheckrMgr());
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -135,11 +120,18 @@ public class FrameMane extends JFrame {
 	}
 	
 	public void collect(String string, int size, int length){
-		
+		if(string.length() != size*size){
+			String[] res = new String[1];
+			res[0] = "String is wrong size, try again";
+			ResultsWindow popup = new ResultsWindow(res);
+			popup.setVisible(true);
+			return;
+		}
 		findWords find = new findWords(chkmgr,txtNxN.getText().split(""), nSlider.getValue(), mSlider.getValue());
-		System.out.println(find.realWords());
-		//String[] res = new String[100];
-		//ResultsWindow popup = new ResultsWindow(find.realWords().toArray(res));
+		//System.out.println(find.realWords());
+		String[] res = new String[100];
+		ResultsWindow popup = new ResultsWindow(find.realWords().toArray(res));
+		popup.setVisible(true);
 	}
 
 }

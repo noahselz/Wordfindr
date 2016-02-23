@@ -1,8 +1,12 @@
 
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -15,8 +19,15 @@ public class ResultsWindow extends JDialog {
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.SOUTH);
 		this.setModal(true);
+		this.setSize(255, 350);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		JButton btnOk = new JButton("Ok");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		panel.add(btnOk);
 		
 		JList list = new JList(results);

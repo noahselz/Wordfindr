@@ -86,13 +86,13 @@ public class findWords {
 	}
 	
 	// Main for testing
-	public static void main(String[] args) throws IOException {
-		CheckrMgr boop = new CheckrMgr();
-		
-		String[] test = "nhcaeefse".split("");
-	
-		findWords find = new findWords(boop, test, 3, 6);
-		System.out.println(find.realWords());
-	}
+//	public static void main(String[] args) throws IOException {
+//		CheckrMgr boop = new CheckrMgr();
+//		
+//		String[] test = "nhcaeefse".split("");
+//	
+//		findWords find = new findWords(boop, test, 3, 6);
+//		System.out.println(find.realWords());
+//	}
 
 }
