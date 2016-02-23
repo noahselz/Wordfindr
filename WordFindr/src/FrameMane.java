@@ -24,6 +24,10 @@ public class FrameMane extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNxN;
+	private JSlider mSlider;
+	private JSlider nSlider;
+	private JButton btnGo;
+	private CheckrMgr chkmgr;
 
 	/**
 	 * Launch the application.
@@ -54,6 +58,8 @@ public class FrameMane extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
+		this.chkmgr = chkmgr;
+		
 		JPanel panelN = new JPanel();
 		panelN.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.add(panelN);
@@ -63,7 +69,7 @@ public class FrameMane extends JFrame {
 		lblInsertSizeOf.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelN.add(lblInsertSizeOf);
 		
-		JSlider nSlider = new JSlider();
+		nSlider = new JSlider();
 		nSlider.setMajorTickSpacing(1);
 		nSlider.setMinimum(3);
 		nSlider.setMaximum(5);
@@ -101,7 +107,7 @@ public class FrameMane extends JFrame {
 		lblPickWordLength.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelM.add(lblPickWordLength);
 		
-		JSlider mSlider = new JSlider();
+		mSlider = new JSlider();
 		mSlider.setSnapToTicks(true);
 		mSlider.setPaintLabels(true);
 		mSlider.setPaintTicks(true);
@@ -118,7 +124,7 @@ public class FrameMane extends JFrame {
 		contentPane.add(panelGo);
 		panelGo.setLayout(new BoxLayout(panelGo, BoxLayout.X_AXIS));
 		
-		JButton btnGo = new JButton("Go");
+		btnGo = new JButton("Go");
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				collect(txtNxN.getText(), nSlider.getValue(), mSlider.getValue());
@@ -129,7 +135,11 @@ public class FrameMane extends JFrame {
 	}
 	
 	public void collect(String string, int size, int length){
-		//CheckrMgr.find()
+		
+		findWords find = new findWords(chkmgr,txtNxN.getText().split(""), nSlider.getValue(), mSlider.getValue());
+		System.out.println(find.realWords());
+		//String[] res = new String[100];
+		//ResultsWindow popup = new ResultsWindow(find.realWords().toArray(res));
 	}
 
 }

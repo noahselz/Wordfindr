@@ -9,16 +9,17 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 public class ResultsWindow extends JDialog {
-	public ResultsWindow() {
+	public ResultsWindow(String[] results) {
 		setTitle("Results");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.SOUTH);
+		this.setModal(true);
 		
 		JButton btnOk = new JButton("Ok");
 		panel.add(btnOk);
 		
-		JList list = new JList();
+		JList list = new JList(results);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getContentPane().add(list, BorderLayout.CENTER);
 	}
